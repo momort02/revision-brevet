@@ -30,27 +30,27 @@ const quizzes = {
         {event: "Date de l'abolition de l'esclavage en France", date: "1848"}
     ],
     maths: [
-        {event: "Valeur de π arrondie à 2 décimales", date: "3.14"},
-        {event: "Formule de l’aire d’un cercle", date: "π × r²"},
-        {event: "Théorème utilisé pour les triangles rectangles", date: "Pythagore"},
-        {event: "Formule du périmètre d’un cercle", date: "2 × π × r"},
-        {event: "Formule du discriminant", date: "Δ = b² - 4ac"},
-        {event: "Résolution d’une équation du 1er degré", date: "ax + b = 0"},
-        {event: "Valeur de √16", date: "4"},
-        {event: "Angle d’un triangle équilatéral", date: "60°"},
-        {event: "Somme des angles d’un triangle", date: "180°"},
-        {event: "Unité de volume dans le système international", date: "m³"},
-        {event: "Formule de l’aire d’un rectangle", date: "L × l"},
-        {event: "Formule du volume d’un cylindre", date: "π × r² × h"},
-        {event: "Nom de l'axe horizontal d’un repère", date: "Axe des abscisses"},
-        {event: "Nom de l'axe vertical d’un repère", date: "Axe des ordonnées"},
-        {event: "Valeur de 0!", date: "1"},
-        {event: "Multiplicatif neutre", date: "1"},
-        {event: "Additif neutre", date: "0"},
-        {event: "Moyenne de 4, 8 et 12", date: "8"},
-        {event: "Résultat de 2³", date: "8"},
-        {event: "Résultat de 5 × 0", date: "0"}
-    ],
+    { event: "Combien font 7 + 5 ?", date: "12" },
+    { event: "Combien font 9 × 3 ?", date: "27" },
+    { event: "Combien font 15 − 4 ?", date: "11" },
+    { event: "Combien font 36 ÷ 6 ?", date: "6" },
+    { event: "Combien font 2² ?", date: "4" },
+    { event: "Résultat de 10% de 200 ?", date: "20" },
+    { event: "Combien font 5 × 5 ?", date: "25" },
+    { event: "Combien font 100 ÷ 10 ?", date: "10" },
+    { event: "Combien font 3 + 8 ?", date: "11" },
+    { event: "Quelle est la moitié de 50 ?", date: "25" },
+    { event: "Combien font 4 × 6 ?", date: "24" },
+    { event: "Combien font 81 ÷ 9 ?", date: "9" },
+    { event: "Quelle est la racine carrée de 25 ?", date: "5" },
+    { event: "Combien font 12 + 13 ?", date: "25" },
+    { event: "Quel est le tiers de 90 ?", date: "30" },
+    { event: "Combien font 0 × 56 ?", date: "0" },
+    { event: "Quel est l'inverse de 4 ?", date: "0.25" },
+    { event: "Combien font 8 + 12 ?", date: "20" },
+    { event: "Combien font 7 × 7 ?", date: "49" },
+    { event: "Combien font 64 ÷ 8 ?", date: "8" }
+],
     francais: [
         {event: "Temps utilisé pour une action passée et terminée", date: "Passé simple"},
         {event: "Synonyme de 'joyeux'", date: "Heureux"},
@@ -120,7 +120,7 @@ function showQuestion() {
 
     // Réinitialiser le timer selon la matière
     if(selectedTheme === 'maths') {
-        timeLeft = 20;
+        timeLeft = 15;
     } else {
         timeLeft = 10;
     }
