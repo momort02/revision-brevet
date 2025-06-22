@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Brevet - Menu</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="menu">
+            <h1>Choisis ta matière :</h1>
+            <button onclick="startQuiz('histoire')">Histoire</button>
+            <button onclick="startQuiz('geo')">Géographie</button>
+            <button onclick="startQuiz('emc')">EMC</button>
+        </div>
+        <div id="quiz" style="display:none;">
+            <p id="question"></p>
+            <div id="options"></div>
+        </div>
+    </div>
+    <script src="scripts/script.js"></script>
+</body>
+</html>
