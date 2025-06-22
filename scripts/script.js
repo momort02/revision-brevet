@@ -28,6 +28,50 @@ const quizzes = {
         {event: "Valeur fondamentale de la laïcité", date: "Respect de toutes les croyances"},
         {event: "Droit d'expression reconnu par", date: "Déclaration des Droits de l’Homme et du Citoyen (1789)"},
         {event: "Date de l'abolition de l'esclavage en France", date: "1848"}
+    ],
+    maths: [
+        {event: "Valeur de π arrondie à 2 décimales", date: "3.14"},
+        {event: "Formule de l’aire d’un cercle", date: "π × r²"},
+        {event: "Théorème utilisé pour les triangles rectangles", date: "Pythagore"},
+        {event: "Formule du périmètre d’un cercle", date: "2 × π × r"},
+        {event: "Formule du discriminant", date: "Δ = b² - 4ac"},
+        {event: "Résolution d’une équation du 1er degré", date: "ax + b = 0"},
+        {event: "Valeur de √16", date: "4"},
+        {event: "Angle d’un triangle équilatéral", date: "60°"},
+        {event: "Somme des angles d’un triangle", date: "180°"},
+        {event: "Unité de volume dans le système international", date: "m³"},
+        {event: "Formule de l’aire d’un rectangle", date: "L × l"},
+        {event: "Formule du volume d’un cylindre", date: "π × r² × h"},
+        {event: "Nom de l'axe horizontal d’un repère", date: "Axe des abscisses"},
+        {event: "Nom de l'axe vertical d’un repère", date: "Axe des ordonnées"},
+        {event: "Valeur de 0!", date: "1"},
+        {event: "Multiplicatif neutre", date: "1"},
+        {event: "Additif neutre", date: "0"},
+        {event: "Moyenne de 4, 8 et 12", date: "8"},
+        {event: "Résultat de 2³", date: "8"},
+        {event: "Résultat de 5 × 0", date: "0"}
+    ],
+    francais: [
+        {event: "Temps utilisé pour une action passée et terminée", date: "Passé simple"},
+        {event: "Synonyme de 'joyeux'", date: "Heureux"},
+        {event: "Nature du mot 'rapidement'", date: "Adverbe"},
+        {event: "Temps de la phrase : 'Il avait mangé'", date: "Plus-que-parfait"},
+        {event: "Forme de discours qui rapporte des paroles exactement", date: "Discours direct"},
+        {event: "Personne qui raconte une histoire", date: "Narrateur"},
+        {event: "Nom commun : 'arbre' est...", date: "Masculin singulier"},
+        {event: "Antonyme de 'sombre'", date: "Clair"},
+        {event: "Temps de la phrase : 'Qu'il vienne'", date: "Subjonctif présent"},
+        {event: "Type de phrase : 'Quelle belle journée!'", date: "Exclamative"},
+        {event: "Nombre de syllabes dans 'éléphant'", date: "3"},
+        {event: "Mode du verbe dans 'il faut que tu viennes'", date: "Subjonctif"},
+        {event: "Synonyme de 'maison'", date: "Habitation"},
+        {event: "Forme du mot 'beaux' au singulier", date: "Beau"},
+        {event: "Nature du mot 'entre'", date: "Préposition"},
+        {event: "Pronom personnel sujet 3e personne singulier", date: "Il"},
+        {event: "Déterminant possessif 1ère personne singulier", date: "Mon"},
+        {event: "Nom de l'étude des sons en langue", date: "Phonétique"},
+        {event: "Type de texte pour convaincre", date: "Argumentatif"},
+        {event: "Genre du mot 'voiture'", date: "Féminin"}
     ]
 };
 
@@ -37,12 +81,22 @@ let currentQuestion = 0;
 let userAnswers = [];
 let timer;
 let timeLeft = 10;
+let selectedTheme = "";
 
 function startQuiz(theme) {
     originalQuiz = [...quizzes[theme]];
     selectedQuiz = shuffle([...originalQuiz]);
     currentQuestion = 0;
     userAnswers = [];
+    selectedTheme = theme;
+
+    // Définir le temps selon la matière
+    if(theme === 'maths') {
+        timeLeft = 20;
+    } else {
+        timeLeft = 10;
+    }
+
     document.getElementById('menu').style.display = 'none';
     document.getElementById('quiz').style.display = 'block';
     resetQuizView();
@@ -63,7 +117,13 @@ function resetQuizView() {
 
 function showQuestion() {
     clearInterval(timer);
-    timeLeft = 10;
+
+    // Réinitialiser le timer selon la matière
+    if(selectedTheme === 'maths') {
+        timeLeft = 20;
+    } else {
+        timeLeft = 10;
+    }
 
     if(currentQuestion >= selectedQuiz.length){
         showCorrection();
@@ -71,7 +131,7 @@ function showQuestion() {
     }
 
     const questionObj = selectedQuiz[currentQuestion];
-    document.getElementById('question').textContent = `Quelle est la date / réponse de : ${questionObj.event} ?`;
+    document.getElementById('question').textContent = `Quelle est la réponse à : ${questionObj.event} ?`;
 
     let wrongAnswers = originalQuiz.filter(e => e.date !== questionObj.date).map(e => e.date);
     wrongAnswers = shuffle(wrongAnswers).slice(0,3);
@@ -151,4 +211,4 @@ function returnToMenu() {
     document.getElementById('quiz').style.display = 'none';
     document.getElementById('menu').style.display = 'block';
     resetQuizView();
-}
+} 
