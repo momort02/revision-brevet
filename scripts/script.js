@@ -152,23 +152,18 @@ function startQuiz(theme) {
         originalQuiz = quizzes.maths.facile.slice();
         selectedQuiz = shuffle(quizzes.maths.facile.slice()).slice(0, 10);
         baseTime = 10;
-        timeLeft = baseTime;
     } else if (theme === 'maths_difficile') {
         originalQuiz = quizzes.maths.difficile.slice();
         selectedQuiz = shuffle(quizzes.maths.difficile.slice()).slice(0, 10);
         baseTime = 20;
-        timeLeft = baseTime;
     } else {
         originalQuiz = quizzes[theme].slice();
         selectedQuiz = shuffle(quizzes[theme].slice()).slice(0, 10);
-        if (selectedQuiz === quizzes.maths.difficile) {
-            timeLeft = 20;
-        } else {
-            timeLeft = 10;
-        }
+        baseTime = 10;
     }
     currentQuestion = 0;
     userAnswers = [];
+    timeLeft = baseTime;
     resetQuizView();
     showQuestion();
 }
@@ -228,7 +223,7 @@ function selectAnswer(selected) {
         userAnswer: selected
     });
     currentQuestion++;
-    timeLeft = 15;
+    timeLeft = baseTime;
     setTimeout(showQuestion, 350);
 }
 
