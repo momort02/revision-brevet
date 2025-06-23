@@ -33,7 +33,23 @@ const quizzes = {
         { event: "Auteur de 'Le Petit Prince'", date: "Antoine de Saint-Exupéry" },
         { event: "Auteur de 'Les Misérables'", date: "Victor Hugo" },
         { event: "Auteur de 'L'Étranger'", date: "Albert Camus" },
-        { event: "Auteur de 'Germinal'", date: "Émile Zola" }
+        { event: "Auteur de 'Germinal'", date: "Émile Zola" },
+        { event: "Définition d'une métaphore", date: "Comparaison sans outil de comparaison" },
+        { event: "Définition d'une hyperbole", date: "Exagération" },
+        { event: "Définition d'une anaphore", date: "Répétition d’un mot ou groupe de mots en début de phrase" },
+        { event: "Définition d'une personnification", date: "Attribuer des caractéristiques humaines à un objet ou animal" },
+        { event: "Définition d'une ellipse", date: "Omission volontaire d’un ou plusieurs mots" },
+        { event: "Définition d'une allitération", date: "Répétition d’un même son consonne" },
+        { event: "Définition d'une assonance", date: "Répétition d’un même son voyelle" },
+        { event: "Qu'est-ce qu'un champ lexical ?", date: "Ensemble de mots liés à un même thème" },
+        { event: "Qu'est-ce qu'une proposition subordonnée relative ?", date: "Proposition introduite par un pronom relatif" },
+        { event: "Qu'est-ce qu'une proposition subordonnée conjonctive ?", date: "Proposition introduite par une conjonction de subordination" },
+        { event: "Quel est le mode du verbe dans 'Il faut que tu viennes' ?", date: "Subjonctif" },
+        { event: "Quel est le temps du verbe dans 'J'avais mangé' ?", date: "Plus-que-parfait" },
+        { event: "Quel est le temps du verbe dans 'Je mangeais' ?", date: "Imparfait" },
+        { event: "Quel est le temps du verbe dans 'Nous aurons fini' ?", date: "Futur antérieur" },
+        { event: "Quel est le temps du verbe dans 'Vous eûtes parlé' ?", date: "Passé antérieur" },
+        { event: "Quel est le mode du verbe dans 'Mangeons !' ?", date: "Impératif" }
     ],
     maths: {
         facile: [
