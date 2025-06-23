@@ -89,6 +89,7 @@ let currentQuestion = 0;
 let userAnswers = [];
 let timer;
 let timeLeft = 15;
+let baseTime = 10;
 
 function selectTheme(theme) {
     document.getElementById('quiz').style.display = 'none';
@@ -110,11 +111,13 @@ function startQuiz(theme) {
     if (theme === 'maths_facile') {
         originalQuiz = quizzes.maths.facile.slice();
         selectedQuiz = shuffle(quizzes.maths.facile.slice()).slice(0, 10);
-        timeLeft = 10;
+        baseTime = 10;
+        timeLeft = baseTime;
     } else if (theme === 'maths_difficile') {
         originalQuiz = quizzes.maths.difficile.slice();
         selectedQuiz = shuffle(quizzes.maths.difficile.slice()).slice(0, 10);
-        timeLeft = 20;
+        baseTime = 20;
+        timeLeft = baseTime;
     } else {
         originalQuiz = quizzes[theme].slice();
         selectedQuiz = shuffle(quizzes[theme].slice()).slice(0, 10);
