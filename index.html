@@ -1,31 +1,34 @@
-<!DOCTYPE html><html lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Brevet - Menu</title>
+    <title>Quiz Brevet</title>
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Choisis ta matière :</h1>
-        <div id="menu">
-            <button onclick="selectTheme('histoire')">Histoire</button>
-            <button onclick="selectTheme('geo')">Géographie</button>
-            <button onclick="selectTheme('emc')">EMC</button>
-            <button onclick="selectTheme('francais')">Francais</button>
-            <button onclick="selectTheme('maths')">Mathématiques</button>
-        </div><div id="maths-level" style="display:none;">
-        <h2>Sélectionne le niveau :</h2>
-        <button onclick="startQuiz('maths_facile')">Facile</button>
-        <button onclick="startQuiz('maths_difficile')">Difficile</button>
+        <h1>Quiz Brevet</h1>
+        <div id="menu" class="card">
+            <h2>Choisis ta matière</h2>
+            <div class="btn-group">
+                <button onclick="selectTheme('histoire')">Histoire</button>
+                <button onclick="selectTheme('geo')">Géographie</button>
+                <button onclick="selectTheme('emc')">EMC</button>
+                <button onclick="selectTheme('francais')">Français</button>
+                <button onclick="selectTheme('maths')">Mathématiques</button>
+            </div>
+        </div>
+        <div id="maths-level" class="card" style="display:none;">
+            <h2>Sélectionne le niveau</h2>
+            <div class="btn-group">
+                <button onclick="startQuiz('maths_facile')">Facile</button>
+                <button onclick="startQuiz('maths_difficile')">Difficile</button>
+            </div>
+            <button class="back-btn" onclick="returnToMenu()">Retour</button>
+        </div>
+        <div id="quiz" class="card" style="display:none;"></div>
     </div>
-
-    <div id="quiz" style="display:none;">
-        <p id="question"></p>
-        <div id="options"></div>
-    </div>
-</div>
-<script src="scripts/script.js"></script>
-
+    <script src="scripts/script.js"></script>
 </body>
 </html>
