@@ -110,16 +110,22 @@ function startQuiz(theme) {
     if (theme === 'maths_facile') {
         originalQuiz = quizzes.maths.facile.slice();
         selectedQuiz = shuffle(quizzes.maths.facile.slice()).slice(0, 10);
+        timeLeft = 10;
     } else if (theme === 'maths_difficile') {
         originalQuiz = quizzes.maths.difficile.slice();
         selectedQuiz = shuffle(quizzes.maths.difficile.slice()).slice(0, 10);
+        timeLeft = 20;
     } else {
         originalQuiz = quizzes[theme].slice();
         selectedQuiz = shuffle(quizzes[theme].slice()).slice(0, 10);
+        if (selectedQuiz === quizzes.maths.difficile) {
+            timeLeft = 20;
+        } else {
+            timeLeft = 10;
+        }
     }
     currentQuestion = 0;
     userAnswers = [];
-    timeLeft = 15;
     resetQuizView();
     showQuestion();
 }
