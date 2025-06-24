@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Brevet</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script>
+      // Configuration Firebase de ton projet
+      const firebaseConfig = {
+        apiKey: "AIzaSyBOlKmWYXhwFAWWxb2BRikTCVQfkyiLXL8",
+        authDomain: "revsionbrevetsitemomort02.firebaseapp.com",
+        projectId: "revsionbrevetsitemomort02",
+        storageBucket: "revsionbrevetsitemomort02.appspot.com",
+        messagingSenderId: "712732038363",
+        appId: "1:712732038363:web:d62b1748b5685cc8f9a8fe",
+        measurementId: "G-YG4TED9VC1"
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+<body>
+    <div class="container" style="display:none;">
+        <h1>Quiz Brevet</h1>
+        <div id="menu" class="card">
+            <h2>Choisis ta matière</h2>
+            <div class="btn-group">
+                <button onclick="selectTheme('histoire')">Histoire</button>
+                <button onclick="selectTheme('geo')">Géographie</button>
+                <button onclick="selectTheme('emc')">EMC</button>
+                <button onclick="selectTheme('francais')">Français</button>
+                <button onclick="selectTheme('maths')">Mathématiques</button>
+            </div>
+        </div>
+        <div id="maths-level" class="card" style="display:none;">
+            <h2>Sélectionne le niveau</h2>
+            <div class="btn-group">
+                <button onclick="startQuiz('maths_facile')">Facile</button>
+                <button onclick="startQuiz('maths_difficile')">Difficile</button>
+            </div>
+            <button class="back-btn" onclick="returnToMenu()">Retour</button>
+        </div>
+        <div id="quiz" class="card" style="display:none;"></div>
+    </div>
+    <div id="login-card" class="card">
+        <h2>Connexion</h2>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Mot de passe">
+        <button onclick="login()">Se connecter</button>
+        <button onclick="signup()">Créer un compte</button>
+        <div id="login-error" style="color:red;"></div>
+    </div>
+    <span id="best-global-time"></span>
+
+    <!-- Bouton burger en haut à gauche -->
+    <button id="menu-btn" onclick="openMenu()">☰</button>
+
+    <!-- Menu latéral caché par défaut -->
+    <div id="menu-overlay" class="menu-overlay" onclick="closeMenu()"></div>
+    <div id="side-menu" class="side-menu">
+        <button onclick="returnToMenu(); closeMenu();" class="menu-back">Menu Quiz</button>
+        <button onclick="logout()" class="menu-logout">Se déconnecter</button>
+    </div>
+
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/script.js"></script>
+</body>
+</html>
