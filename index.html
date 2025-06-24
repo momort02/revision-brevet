@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +10,20 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
     <script>
-      // Configuration Firebase de ton projet
-      const firebaseConfig = {
-        apiKey: "AIzaSyBOlKmWYXhwFAWWxb2BRikTCVQfkyiLXL8",
-        authDomain: "revsionbrevetsitemomort02.firebaseapp.com",
-        projectId: "revsionbrevetsitemomort02",
-        storageBucket: "revsionbrevetsitemomort02.appspot.com",
-        messagingSenderId: "712732038363",
-        appId: "1:712732038363:web:d62b1748b5685cc8f9a8fe",
-        measurementId: "G-YG4TED9VC1"
-      };
-      firebase.initializeApp(firebaseConfig);
+        // Configuration Firebase de ton projet
+        const firebaseConfig = {
+            apiKey: "AIzaSyBOlKmWYXhwFAWWxb2BRikTCVQfkyiLXL8",
+            authDomain: "revsionbrevetsitemomort02.firebaseapp.com",
+            projectId: "revsionbrevetsitemomort02",
+            storageBucket: "revsionbrevetsitemomort02.appspot.com",
+            messagingSenderId: "712732038363",
+            appId: "1:712732038363:web:d62b1748b5685cc8f9a8fe",
+            measurementId: "G-YG4TED9VC1"
+        };
+        firebase.initializeApp(firebaseConfig);
     </script>
 </head>
+
 <body>
     <div class="container" style="display:none;">
         <h1>Quiz Brevet</h1>
@@ -62,10 +64,11 @@
     <div id="menu-overlay" class="menu-overlay" onclick="closeMenu()"></div>
     <div id="side-menu" class="side-menu">
         <button onclick="returnToMenu(); closeMenu();" class="menu-back">Menu Quiz</button>
-        <button onclick="logout()" class="menu-logout">Se déconnecter</button>
+        <button onclick="logout(); closeMenu();" class="menu-logout">Se déconnecter</button>
     </div>
 
     <script src="src/scripts/auth.js"></script>
     <script src="src/scripts/script.js"></script>
 </body>
+
 </html>

@@ -262,3 +262,36 @@ function returnToMenu() {
     resetQuizView();
 }
 
+function afficherBestTimes(userId) {
+    db.collection('users').doc(userId).get().then(doc => {
+        if (doc.exists) {
+            const bestTimes = doc.data().bestTimes || {};
+            let html = '<table style="margin:auto;"><tr><th>Matière</th><th>Meilleur temps (s)</th></tr>';
+            for (const matiere in bestTimes) {
+                html += `<tr><td>${matiere}</td><td>${bestTimes[matiere]}</td></tr>`;
+            }
+            html += '</table>';
+            document.getElementById('best-global-time').innerHTML = html;
+        } else {
+            document.getElementById('best-global-time').innerHTML = "Aucun résultat enregistré.";
+        }
+    });
+}
+
+db.collection('users').doc(userId).set({
+    bestTimes: { histoire: 42.5 }
+}, { merge: true });
+
+db.collection('users').doc(userId).get().then(doc => {
+    if (doc.exists) {
+        const data = doc.data();
+        // Utilise data.bestTimes ici
+    }
+});
+
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        afficherBestTimes(user.uid);
+    }
+});
+
