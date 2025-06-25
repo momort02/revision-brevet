@@ -23,7 +23,18 @@
         firebase.initializeApp(firebaseConfig);
     </script>
 </head>
+    <audio id="musique-fond" loop>
+  <source src="musique.mp3" type="audio/mpeg">
+  Votre navigateur ne supporte pas l’audio HTML5.
+</audio>
+<button onclick="document.getElementById('musique-fond').play()" style="position:fixed; bottom:10px; right:10px; z-index:1000;">
+  🎵 Activer la musique
+</button>
 
+<script>
+  const audio = document.getElementById("musique-fond");
+  audio.volume = 0.2;
+</script>
 <body>
     <div class="container" style="display:none;">
         <h1>Quiz Brevet</h1>
