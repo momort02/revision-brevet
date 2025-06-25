@@ -16,7 +16,6 @@ function signup() {
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(userCredential => {
             const user = userCredential.user;
-            // Enregistre le pseudo dans Firestore
             return firebase.firestore().collection('users').doc(user.uid).set({
                 pseudo: pseudo,
                 bestTimes: {}

@@ -285,7 +285,6 @@ db.collection('users').doc(userId).set({
 db.collection('users').doc(userId).get().then(doc => {
     if (doc.exists) {
         const data = doc.data();
-        // Utilise data.bestTimes ici
     }
 });
 
