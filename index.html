@@ -23,19 +23,57 @@
         firebase.initializeApp(firebaseConfig);
     </script>
 </head>
-    <audio id="musique-fond" loop>
-  <source src="musique.mp3" type="audio/mpeg">
-  Votre navigateur ne supporte pas l’audio HTML5.
-</audio>
-<button onclick="document.getElementById('musique-fond').play()" style="position:fixed; bottom:10px; right:10px; z-index:1000;">
-  🎵 Activer la musique
-</button>
 
-<script>
-  const audio = document.getElementById("musique-fond");
-  audio.volume = 0.2;
-</script>
 <body>
+    <audio id="musique-fond" loop>
+        <source id="musique-source" src="musique.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l’audio HTML5.
+    </audio>
+    <button id="musique-btn" style="position:fixed; bottom:10px; right:120px; z-index:1000;">
+        🎵 Activer la musique
+    </button>
+    <select id="musique-select" style="position:fixed; bottom:10px; right:10px; z-index:1000;">
+        <option value="musique.mp3">Musique 1</option>
+        <option value="musique2.mp3">Musique 2</option>
+        <option value="musique3.mp3">Musique 3</option>
+    </select>
+
+    <script>
+        const audio = document.getElementById("musique-fond");
+        const musiqueBtn = document.getElementById("musique-btn");
+        const musiqueSelect = document.getElementById("musique-select");
+        const musiqueSource = document.getElementById("musique-source");
+        audio.volume = 0.15;
+
+        function updateMusiqueBtn() {
+            if (audio.paused) {
+                musiqueBtn.textContent = "🎵 Activer la musique";
+            } else {
+                musiqueBtn.textContent = "🔇 Désactiver la musique";
+            }
+        }
+
+        musiqueBtn.onclick = function () {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+            updateMusiqueBtn();
+        };
+
+        musiqueSelect.onchange = function () {
+            const selected = musiqueSelect.value;
+            musiqueSource.src = selected;
+            audio.load();
+            audio.play();
+            updateMusiqueBtn();
+        };
+
+        audio.onplay = updateMusiqueBtn;
+        audio.onpause = updateMusiqueBtn;
+        updateMusiqueBtn();
+    </script>
     <div class="container" style="display:none;">
         <h1>Quiz Brevet</h1>
         <div id="menu" class="card">
