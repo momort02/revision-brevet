@@ -6,7 +6,7 @@ const quizzes = {
         { event: "Front populaire", date: "1936" },
         { event: "Seconde Guerre mondiale", date: "1939-1945" },
         { event: "Libération, De Gaulle, droit de vote des femmes, Sécurité sociale", date: "1944-1945" },
-        { event: "Création de l'ONU", date: "1947" },
+        { event: "Création de l'ONU", date: "1945" },
         { event: "Guerre froide", date: "1947-1991" },
         { event: "Traité de Rome", date: "1957" },
         { event: "Indépendance de l'Algérie", date: "1962" },
