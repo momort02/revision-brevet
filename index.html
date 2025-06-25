@@ -33,9 +33,9 @@
         🎵 Activer la musique
     </button>
     <select id="musique-select" style="position:fixed; bottom:10px; right:10px; z-index:1000;">
-        <option value="musique.mp3">Musique 1</option>
-        <option value="musique2.mp3">Musique 2</option>
-        <option value="musique3.mp3">Musique 3</option>
+        <option value="musique.mp3">ჩუბინა</option>
+        <option value="musique2.mp3">Weightless</option>
+        <option value="musique3.mp3">Thunderstruck</option>
     </select>
 
     <script>
@@ -100,6 +100,7 @@
         <h2>Connexion</h2>
         <input type="email" id="email" placeholder="Email">
         <input type="password" id="password" placeholder="Mot de passe">
+        <input type="text" id="pseudo" placeholder="Pseudo">
         <button onclick="login()">Se connecter</button>
         <button onclick="signup()">Créer un compte</button>
         <div id="login-error" style="color:red;"></div>
@@ -114,6 +115,7 @@
     <div id="side-menu" class="side-menu">
         <button onclick="returnToMenu(); closeMenu();" class="menu-back">Menu Quiz</button>
         <button onclick="logout(); closeMenu();" class="menu-logout">Se déconnecter</button>
+        <button onclick="window.location.href='src/classements.html'; closeMenu();" class="menu-classement">Classement</button>
     </div>
 
     <script src="src/scripts/auth.js"></script>

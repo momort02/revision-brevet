@@ -12,9 +12,18 @@ function login() {
 function signup() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    const pseudo = document.getElementById('pseudo').value;
     firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {
+            const user = userCredential.user;
+            // Enregistre le pseudo dans Firestore
+            return firebase.firestore().collection('users').doc(user.uid).set({
+                pseudo: pseudo,
+                bestTimes: {}
+            });
+        })
         .catch(error => {
-            document.getElementById('login-error').innerText = error.message;
+            document.getElementById('login-error').textContent = error.message;
         });
 }
 

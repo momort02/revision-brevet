@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Classements Quiz Brevet</title>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBOlKmWYXhwFAWWxb2BRikTCVQfkyiLXL8",
+            authDomain: "revsionbrevetsitemomort02.firebaseapp.com",
+            projectId: "revsionbrevetsitemomort02",
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+    <style>
+        table { margin:auto; border-collapse:collapse; }
+        th, td { border:1px solid #ccc; padding:6px 12px; }
+        th { background:#eee; }
+    </style>
+</head>
+<body>
+    <h1>Classement mondial par matière</h1>
+    <div id="classements"></div>
+    <script>
+        const matieres = ["histoire", "geo", "emc", "francais", "maths_facile", "maths_difficile"];
+        const matiereLabels = {
+            histoire: "Histoire",
+            geo: "Géographie",
+            emc: "EMC",
+            francais: "Français",
+            maths_facile: "Maths Facile",
+            maths_difficile: "Maths Difficile"
+        };
+
+        async function afficherTousClassements() {
+            let globalHtml = "";
+            const snapshot = await db.collection('users').get();
+            for (const matiere of matieres) {
+                let scores = [];
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const pseudo = data.pseudo || "Anonyme";
+                    const bestTimes = data.bestTimes || {};
+                    if (bestTimes[matiere]) {
+                        scores.push({ pseudo: pseudo, chrono: bestTimes[matiere] });
+                    }
+                });
+                scores.sort((a, b) => a.chrono - b.chrono);
+                let html = `<h2>${matiereLabels[matiere]}</h2>`;
+                if (scores.length === 0) {
+                    html += "<p>Aucun résultat pour cette matière.</p>";
+                } else {
+                    html += `<table><tr><th>Rang</th><th>Pseudo</th><th>Meilleur temps (s)</th></tr>`;
+                    scores.forEach((s, i) => {
+                        html += `<tr><td>${i+1}</td><td>${s.pseudo}</td><td>${s.chrono}</td></tr>`;
+                    });
+                    html += "</table>";
+                }
+                globalHtml += html;
+            }
+            document.getElementById('classements').innerHTML = globalHtml;
+        }
+
+        afficherTousClassements();
+    </script>
+</body>
+</html>
