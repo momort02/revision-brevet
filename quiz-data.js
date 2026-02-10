@@ -1,21 +1,21 @@
 // Données des quiz par matière
 const quizData = {
     histoire: [
-        { question: "Première Guerre mondiale", answer: "1914-1918", type: "text" },
-        { question: "Révolution Russe", answer: "1917", type: "text" },
-        { question: "Allemagne d'Hitler", answer: "1933-1945", type: "text" },
-        { question: "Front populaire", answer: "1936", type: "text" },
-        { question: "Seconde Guerre mondiale", answer: "1939-1945", type: "text" },
-        { question: "Libération, De Gaulle, droit de vote des femmes, Sécurité sociale", answer: "1944-1945", type: "text" },
-        { question: "Création de l'ONU", answer: "1945", type: "text" },
-        { question: "Guerre froide", answer: "1947-1991", type: "text" },
-        { question: "Traité de Rome", answer: "1957", type: "text" },
-        { question: "Indépendance de l'Algérie", answer: "1962", type: "text" },
-        { question: "Chute du mur de Berlin", answer: "1989", type: "text" },
-        { question: "Fondation de la Vème République", answer: "1958", type: "text" },
-        { question: "Suffrage universel du président de la République", answer: "1962", type: "text" },
-        { question: "Loi sur l'IVG", answer: "1975", type: "text" },
-        { question: "1ère élection de François Mitterrand", answer: "1981", type: "text" }
+        { question: "Première Guerre mondiale", answer: "1914-1918", type: "date" },
+        { question: "Révolution Russe", answer: "1917", type: "date" },
+        { question: "Allemagne d'Hitler", answer: "1933-1945", type: "date" },
+        { question: "Front populaire", answer: "1936", type: "date" },
+        { question: "Seconde Guerre mondiale", answer: "1939-1945", type: "date" },
+        { question: "Libération, De Gaulle, droit de vote des femmes, Sécurité sociale", answer: "1944-1945", type: "date" },
+        { question: "Création de l'ONU", answer: "1945", type: "date" },
+        { question: "Guerre froide", answer: "1947-1991", type: "date" },
+        { question: "Traité de Rome", answer: "1957", type: "date" },
+        { question: "Indépendance de l'Algérie", answer: "1962", type: "date" },
+        { question: "Chute du mur de Berlin", answer: "1989", type: "date" },
+        { question: "Fondation de la Vème République", answer: "1958", type: "date" },
+        { question: "Suffrage universel du président de la République", answer: "1962", type: "date" },
+        { question: "Loi sur l'IVG", answer: "1975", type: "date" },
+        { question: "1ère élection de François Mitterrand", answer: "1981", type: "date" }
     ],
     
     geo: [
@@ -122,34 +122,34 @@ const quizData = {
         { question: "Donne le nom du DROM situé dans l'océan Pacifique.", answer: "Polynésie française", type: "text" },
         
         // Questions textuelles classiques - Massifs montagneux
-        { question: "Quel est le plus grand massif montagneux de France ?", answer: "Les Alpes", type: "text" },
-        { question: "Dans quel massif se trouve le Mont Blanc ?", answer: "Les Alpes", type: "text" },
-        { question: "Quel massif montagneux sépare la France de l'Espagne ?", answer: "Les Pyrénées", type: "text" },
-        { question: "Dans quel massif se trouve le Ballon d'Alsace ?", answer: "Les Vosges", type: "text" },
-        { question: "Quel est le point culminant du Massif Central ?", answer: "Le Puy de Sancy", type: "text" },
+        { question: "Quel est le plus grand massif montagneux de France ?", answer: "Les Alpes", type: "massif" },
+        { question: "Dans quel massif se trouve le Mont Blanc ?", answer: "Les Alpes", type: "massif" },
+        { question: "Quel massif montagneux sépare la France de l'Espagne ?", answer: "Les Pyrénées", type: "massif" },
+        { question: "Dans quel massif se trouve le Ballon d'Alsace ?", answer: "Les Vosges", type: "massif" },
+        { question: "Quel est le point culminant du Massif Central ?", answer: "Le Puy de Sancy", type: "massif" },
         
         // Questions textuelles classiques - Villes et régions
-        { question: "Dans quelle région se trouve la ville de Lille ?", answer: "Hauts-de-France", type: "text" },
-        { question: "Dans quelle région se trouve la ville de Marseille ?", answer: "Provence-Alpes-Côte d'Azur", type: "text" },
-        { question: "Dans quelle région se trouve la ville de Nantes ?", answer: "Pays de la Loire", type: "text" },
-        { question: "Quel est le chef-lieu de la région Nouvelle-Aquitaine ?", answer: "Bordeaux", type: "text" },
-        { question: "Quel est le chef-lieu de la région Auvergne-Rhône-Alpes ?", answer: "Lyon", type: "text" },
+        { question: "Dans quelle région se trouve la ville de Lille ?", answer: "Hauts-de-France", type: "ville" },
+        { question: "Dans quelle région se trouve la ville de Marseille ?", answer: "Provence-Alpes-Côte d'Azur", type: "ville" },
+        { question: "Dans quelle région se trouve la ville de Nantes ?", answer: "Pays de la Loire", type: "ville" },
+        { question: "Quel est le chef-lieu de la région Nouvelle-Aquitaine ?", answer: "Bordeaux", type: "ville" },
+        { question: "Quel est le chef-lieu de la région Auvergne-Rhône-Alpes ?", answer: "Lyon", type: "ville" },
         { question: "Cite une région française frontalière avec l'Allemagne.", answer: "Grand Est", type: "text" },
         { question: "Cite une région française frontalière avec l'Espagne.", answer: "Occitanie", type: "text" },
         { question: "Cite une région française qui a un littoral sur la Méditerranée.", answer: "Provence-Alpes-Côte d'Azur", type: "text" },
         { question: "Cite une région française qui a un littoral sur l'océan Atlantique.", answer: "Nouvelle-Aquitaine", type: "text" },
         
         // Questions textuelles classiques - Métropoles
-        { question: "Quelle est la plus grande métropole de France ?", answer: "Paris", type: "text" },
-        { question: "Quelle est la deuxième métropole de France par la population ?", answer: "Marseille", type: "text" },
-        { question: "Quelle est la troisième métropole de France ?", answer: "Lyon", type: "text" },
-        { question: "Quelle est la quatrième métropole de France ?", answer: "Toulouse", type: "text" },
-        { question: "Quelle est la cinquième métropole de France ?", answer: "Nice", type: "text" },
-        { question: "Quelle est la sixième métropole de France ?", answer: "Nantes", type: "text" },
-        { question: "Quelle est la septième métropole de France ?", answer: "Montpellier", type: "text" },
-        { question: "Quelle est la huitième métropole de France ?", answer: "Strasbourg", type: "text" },
-        { question: "Quelle est la neuvième métropole de France ?", answer: "Bordeaux", type: "text" },
-        { question: "Quelle est la dixième métropole de France ?", answer: "Lille", type: "text" }
+        { question: "Quelle est la plus grande métropole de France ?", answer: "Paris", type: "ville" },
+        { question: "Quelle est la deuxième métropole de France par la population ?", answer: "Marseille", type: "ville" },
+        { question: "Quelle est la troisième métropole de France ?", answer: "Lyon", type: "ville" },
+        { question: "Quelle est la quatrième métropole de France ?", answer: "Toulouse", type: "ville" },
+        { question: "Quelle est la cinquième métropole de France ?", answer: "Nice", type: "ville" },
+        { question: "Quelle est la sixième métropole de France ?", answer: "Nantes", type: "ville" },
+        { question: "Quelle est la septième métropole de France ?", answer: "Montpellier", type: "ville" },
+        { question: "Quelle est la huitième métropole de France ?", answer: "Strasbourg", type: "ville" },
+        { question: "Quelle est la neuvième métropole de France ?", answer: "Bordeaux", type: "ville" },
+        { question: "Quelle est la dixième métropole de France ?", answer: "Lille", type: "ville" }
     ],
     
     emc: [

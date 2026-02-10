@@ -204,13 +204,19 @@ function backToSubjects() {
 function startQuiz(subject) {
     currentSubject = subject;
     
-    // Récupérer les données du quiz
-    const allQuestions = quizData[subject];
-    if (!allQuestions) {
+    // Récupérer les données du quiz (mode mix -> toutes matières)
+    let allQuestions = null;
+    if (subject === 'mix') {
+        allQuestions = Object.values(quizData).flat();
+    } else {
+        allQuestions = quizData[subject];
+    }
+
+    if (!allQuestions || allQuestions.length === 0) {
         console.error("Matière introuvable:", subject);
         return;
     }
-    
+
     // Mélanger et prendre 10 questions
     currentQuizData = shuffleArray([...allQuestions]).slice(0, 10);
     currentQuestionIndex = 0;
@@ -275,21 +281,29 @@ function displayQuestion() {
 }
 
 function getWrongAnswers(subject, correctAnswer, questionType = 'text') {
+    // Construire le pool selon la matière (mix -> toutes matières)
+    let pool = [];
+    if (subject && quizData[subject]) {
+        pool = quizData[subject];
+    } else {
+        pool = Object.values(quizData).flat();
+    }
+
     // D'abord essayer de prendre des réponses du même type
-    let allAnswers = quizData[subject]
+    let allAnswers = pool
         .filter(q => q.type === questionType)
         .map(q => q.answer)
         .filter(a => a !== correctAnswer);
-    
+
     // Si pas assez de réponses du même type, prendre aussi les autres types
     if (allAnswers.length < 3) {
-        const otherAnswers = quizData[subject]
+        const otherAnswers = pool
             .filter(q => q.type !== questionType)
             .map(q => q.answer)
             .filter(a => a !== correctAnswer && !allAnswers.includes(a));
         allAnswers = [...allAnswers, ...otherAnswers];
     }
-    
+
     return shuffleArray(allAnswers).slice(0, 3);
 }
 
