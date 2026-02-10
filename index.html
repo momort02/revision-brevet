@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Brevet - Révisez pour le Brevet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Écran de connexion -->
+    <div id="auth-screen" class="screen active">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1 class="logo">Quiz Brevet</h1>
+                    <p class="subtitle">Révisez intelligemment pour le Brevet</p>
+                </div>
+                
+                <div class="auth-tabs">
+                    <button class="tab-btn active" data-tab="login">Connexion</button>
+                    <button class="tab-btn" data-tab="signup">Inscription</button>
+                </div>
+                
+                <div id="login-tab" class="auth-form active">
+                    <input type="email" id="login-email" placeholder="Email" class="input-field">
+                    <input type="password" id="login-password" placeholder="Mot de passe" class="input-field">
+                    <button onclick="loginUser()" class="btn btn-primary">Se connecter</button>
+                </div>
+                
+                <div id="signup-tab" class="auth-form">
+                    <input type="text" id="signup-pseudo" placeholder="Pseudo" class="input-field">
+                    <input type="email" id="signup-email" placeholder="Email" class="input-field">
+                    <input type="password" id="signup-password" placeholder="Mot de passe (min. 6 caractères)" class="input-field">
+                    <button onclick="signupUser()" class="btn btn-primary">Créer un compte</button>
+                </div>
+                
+                <div id="auth-error" class="error-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Écran principal du quiz -->
+    <div id="main-screen" class="screen">
+        <nav class="navbar">
+            <div class="nav-content">
+                <h2 class="nav-logo">Quiz Brevet</h2>
+                <div class="nav-actions">
+                    <button onclick="showLeaderboard()" class="nav-btn">🏆 Classement</button>
+                    <button onclick="logoutUser()" class="nav-btn">Déconnexion</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Menu de sélection des matières -->
+        <div id="subject-menu" class="content-section active">
+            <div class="container">
+                <div class="welcome-header">
+                    <h1 class="main-title">Bienvenue, <span id="user-pseudo">Étudiant</span></h1>
+                    <p class="main-subtitle">Choisissez votre matière et commencez à réviser</p>
+                </div>
+                
+                <div class="subjects-grid">
+                    <div class="subject-card" onclick="selectSubject('histoire')">
+                        <div class="subject-icon">📚</div>
+                        <h3>Histoire</h3>
+                        <p>Dates clés et événements</p>
+                    </div>
+                    
+                    <div class="subject-card" onclick="selectSubject('geo')">
+                        <div class="subject-icon">🌍</div>
+                        <h3>Géographie</h3>
+                        <p>Régions et territoires</p>
+                    </div>
+                    
+                    <div class="subject-card" onclick="selectSubject('emc')">
+                        <div class="subject-icon">⚖️</div>
+                        <h3>EMC</h3>
+                        <p>Éducation civique</p>
+                    </div>
+                    
+                    <div class="subject-card" onclick="selectSubject('francais')">
+                        <div class="subject-icon">✍️</div>
+                        <h3>Français</h3>
+                        <p>Littérature et grammaire</p>
+                    </div>
+                    
+                    <div class="subject-card" onclick="selectSubject('maths')">
+                        <div class="subject-icon">🔢</div>
+                        <h3>Mathématiques</h3>
+                        <p>Calculs et logique</p>
+                    </div>
+                </div>
+
+                <div id="stats-section" class="stats-section">
+                    <h3>Vos meilleurs temps</h3>
+                    <div id="user-stats" class="stats-grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sélection niveau maths -->
+        <div id="maths-level" class="content-section">
+            <div class="container">
+                <button onclick="backToSubjects()" class="back-btn">← Retour</button>
+                <div class="level-header">
+                    <h2>Mathématiques</h2>
+                    <p>Choisissez votre niveau de difficulté</p>
+                </div>
+                <div class="level-grid">
+                    <div class="level-card" onclick="startQuiz('maths_facile')">
+                        <div class="level-icon">😊</div>
+                        <h3>Facile</h3>
+                        <p>10 secondes par question</p>
+                    </div>
+                    <div class="level-card" onclick="startQuiz('maths_difficile')">
+                        <div class="level-icon">🔥</div>
+                        <h3>Difficile</h3>
+                        <p>20 secondes par question</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zone de quiz -->
+        <div id="quiz-section" class="content-section">
+            <div class="container">
+                <div class="quiz-header">
+                    <button onclick="quitQuiz()" class="back-btn">← Quitter</button>
+                    <div class="quiz-progress">
+                        <span id="question-counter">Question 1/10</span>
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quiz-card">
+                    <div class="timer-display">
+                        <div class="timer-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" class="timer-bg"></circle>
+                                <circle id="timer-progress" cx="50" cy="50" r="45" class="timer-progress"></circle>
+                            </svg>
+                            <span id="timer-text">10</span>
+                        </div>
+                    </div>
+                    
+                    <h2 id="question-text" class="question-text"></h2>
+                    
+                    <div id="options-container" class="options-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Écran de correction -->
+        <div id="results-section" class="content-section">
+            <div class="container">
+                <div class="results-card">
+                    <div class="results-header">
+                        <div class="score-circle">
+                            <span id="final-score">0/10</span>
+                        </div>
+                        <h2>Quiz terminé !</h2>
+                        <p id="score-message"></p>
+                    </div>
+                    
+                    <div id="time-info" class="time-info"></div>
+                    
+                    <div class="results-table-container">
+                        <table id="results-table" class="results-table"></table>
+                    </div>
+                    
+                    <div class="results-actions">
+                        <button onclick="backToSubjects()" class="btn btn-secondary">Retour au menu</button>
+                        <button onclick="retryQuiz()" class="btn btn-primary">Recommencer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Classement -->
+        <div id="leaderboard-section" class="content-section">
+            <div class="container">
+                <button onclick="closeLeaderboard()" class="back-btn">← Retour</button>
+                <div class="leaderboard-header">
+                    <h2>🏆 Classement Mondial</h2>
+                    <p>Les meilleurs temps par matière</p>
+                </div>
+                <div id="leaderboard-content" class="leaderboard-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contrôles musique -->
+    <div class="music-controls">
+        <button id="music-toggle" class="music-btn">🎵</button>
+        <select id="music-select" class="music-select">
+            <option value="">Aucune musique</option>
+            <option value="https://cdn.pixabay.com/audio/2022/03/10/audio_4c91f5e3a8.mp3">Musique 1</option>
+            <option value="https://cdn.pixabay.com/audio/2022/03/24/audio_c8c6fc6da3.mp3">Musique 2</option>
+            <option value="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3">Musique 3</option>
+        </select>
+    </div>
+
+    <audio id="background-music" loop></audio>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    
+    <script src="config.js"></script>
+    <script src="quiz-data.js"></script>
+    <script src="maps.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
